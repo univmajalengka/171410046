@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 11 Mei 2019 pada 05.58
+-- Generation Time: 24 Jun 2019 pada 06.25
 -- Versi Server: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -23,11 +23,28 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `data barang`
+--
+CREATE TABLE IF NOT EXISTS `data barang` (
+`Id_Barang` int(11)
+,`Nama` varchar(50)
+,`Deskripsi` text
+,`Warna` varchar(25)
+,`Ukuran` varchar(15)
+,`Harga` int(30)
+,`Stock` int(20)
+,`Kategori` varchar(35)
+,`Id_Kategori` int(11)
+,`Id_Transaksi` int(11)
+);
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `data_admin`
 --
 
 CREATE TABLE IF NOT EXISTS `data_admin` (
-  `Id` int(11) NOT NULL,
+  `Id_Admin` int(11) NOT NULL,
   `Username` varchar(20) NOT NULL,
   `Password` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -36,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `data_admin` (
 -- Dumping data untuk tabel `data_admin`
 --
 
-INSERT INTO `data_admin` (`Id`, `Username`, `Password`) VALUES
+INSERT INTO `data_admin` (`Id_Admin`, `Username`, `Password`) VALUES
 (0, '', ''),
 (1, '2', '4'),
 (2, '3', '4'),
@@ -58,7 +75,7 @@ INSERT INTO `data_admin` (`Id`, `Username`, `Password`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `data_barang` (
-  `Id` int(11) NOT NULL,
+  `Id_Barang` int(11) NOT NULL,
   `Nama` varchar(50) NOT NULL,
   `Deskripsi` text NOT NULL,
   `Warna` varchar(25) NOT NULL,
@@ -72,17 +89,17 @@ CREATE TABLE IF NOT EXISTS `data_barang` (
 -- Dumping data untuk tabel `data_barang`
 --
 
-INSERT INTO `data_barang` (`Id`, `Nama`, `Deskripsi`, `Warna`, `Ukuran`, `Kategori`, `Harga`, `Stock`) VALUES
-(17141001, 'Siska', 'Membeli baju kaos', 'coklat', 'M', 'Konsumen01', 0, 2),
-(17141002, 'Intan', 'Membeli baju kemeja', 'biru', 'S', 'Konsumen02', 0, 3),
-(17141003, 'Anggia', 'Membeli gamis', 'abu-abu', 'M', 'Konsumen03', 0, 4),
-(17141004, 'Sifa', 'Membeli celana', 'hitam', 'XL', 'Konsumen04', 0, 5),
-(17141005, 'Iis', 'Membeli baju kemeja', 'abu-abu', 'M', 'Konsumen05', 0, 2),
-(17141006, 'Aenun', 'Membeli baju kaos', 'Hijau', 'M', 'Konsumen06', 0, 3),
-(17141007, 'Tuti', 'Membeli gamis', 'pink', 'M', 'Konsumen07', 0, 1),
-(17141008, 'Novi', 'Membeli baju kaos', 'Ungu', 'M', 'Konsumen08', 0, 2),
-(17141009, 'Fitria', 'Membeli baju kemeja', 'coklat', 'M', 'Konsumen09', 0, 1),
-(17141010, 'Kartika', 'Membeli baju kaos', 'hitam', 'XL', 'Konsumen10', 0, 1);
+INSERT INTO `data_barang` (`Id_Barang`, `Nama`, `Deskripsi`, `Warna`, `Ukuran`, `Kategori`, `Harga`, `Stock`) VALUES
+(17141001, 'Siska', 'Membeli baju kaos', 'coklat', 'M', 'Konsumen01', 15000, 2),
+(17141002, 'Intan', 'Membeli baju kemeja', 'biru', 'S', 'Konsumen02', 30000, 3),
+(17141003, 'Anggia', 'Membeli gamis', 'abu-abu', 'M', 'Konsumen03', 60000, 4),
+(17141004, 'Sifa', 'Membeli celana', 'hitam', 'XL', 'Konsumen04', 70000, 5),
+(17141005, 'Iis', 'Membeli baju kemeja', 'abu-abu', 'M', 'Konsumen05', 50000, 2),
+(17141006, 'Aenun', 'Membeli baju kaos', 'Hijau', 'M', 'Konsumen06', 15000, 3),
+(17141007, 'Tuti', 'Membeli gamis', 'pink', 'M', 'Konsumen07', 60000, 1),
+(17141008, 'Novi', 'Membeli baju kaos', 'Ungu', 'M', 'Konsumen08', 15000, 2),
+(17141009, 'Fitria', 'Membeli baju kemeja', 'coklat', 'M', 'Konsumen09', 30000, 1),
+(17141010, 'Kartika', 'Membeli baju kaos', 'hitam', 'XL', 'Konsumen10', 15000, 1);
 
 -- --------------------------------------------------------
 
@@ -92,14 +109,14 @@ INSERT INTO `data_barang` (`Id`, `Nama`, `Deskripsi`, `Warna`, `Ukuran`, `Katego
 
 CREATE TABLE IF NOT EXISTS `data_kategori` (
   `Kategori` varchar(35) NOT NULL,
-  `Id` int(11) NOT NULL
+  `Id_Kategori` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `data_kategori`
 --
 
-INSERT INTO `data_kategori` (`Kategori`, `Id`) VALUES
+INSERT INTO `data_kategori` (`Kategori`, `Id_Kategori`) VALUES
 ('Konsumen01', 17141001),
 ('Konsumen02', 17141002),
 ('Konsumen03', 17141003),
@@ -146,7 +163,7 @@ INSERT INTO `data_no_transaksi` (`Username`, `Notransaksi`) VALUES
 
 CREATE TABLE IF NOT EXISTS `data_pelanggan` (
   `Nama` varchar(50) NOT NULL,
-  `Id` int(11) NOT NULL,
+  `Id_Pelanggan` int(11) NOT NULL,
   `Alamat` text NOT NULL,
   `Email` text NOT NULL,
   `Telepone` varchar(25) NOT NULL,
@@ -158,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `data_pelanggan` (
 -- Dumping data untuk tabel `data_pelanggan`
 --
 
-INSERT INTO `data_pelanggan` (`Nama`, `Id`, `Alamat`, `Email`, `Telepone`, `Username`, `Password`) VALUES
+INSERT INTO `data_pelanggan` (`Nama`, `Id_Pelanggan`, `Alamat`, `Email`, `Telepone`, `Username`, `Password`) VALUES
 ('Aenun', 17141006, 'Sumberjaya', 'Aenun06@gmail.com', '082333414', 'Majalengka06', '0006'),
 ('Anggia', 17141003, 'Jatiwangi', 'Anggia03@gmail.com', '082333474', 'Majalengka03', '0003'),
 ('Fitria', 17141009, 'Kertajati', 'Fitria09@gmail.com', '082333434', 'Majalengka09', '0009'),
@@ -179,7 +196,7 @@ INSERT INTO `data_pelanggan` (`Nama`, `Id`, `Alamat`, `Email`, `Telepone`, `User
 CREATE TABLE IF NOT EXISTS `data_transaksi` (
   `Notransaksi` varchar(25) NOT NULL,
   `Username` varchar(20) NOT NULL,
-  `Id` int(11) NOT NULL,
+  `Id_Transaksi` int(11) NOT NULL,
   `Nama` varchar(50) NOT NULL,
   `Harga` int(20) NOT NULL,
   `Jumlah` int(10) NOT NULL,
@@ -190,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `data_transaksi` (
 -- Dumping data untuk tabel `data_transaksi`
 --
 
-INSERT INTO `data_transaksi` (`Notransaksi`, `Username`, `Id`, `Nama`, `Harga`, `Jumlah`, `Subtotal`) VALUES
+INSERT INTO `data_transaksi` (`Notransaksi`, `Username`, `Id_Transaksi`, `Nama`, `Harga`, `Jumlah`, `Subtotal`) VALUES
 ('01', 'Majalengka01', 17141001, 'Siska', 0, 2, 5),
 ('02', 'Majalengka02', 17141002, 'Intan', 0, 1, 3),
 ('03', 'Majalengka03', 17141003, 'Anggia', 0, 2, 6),
@@ -202,6 +219,15 @@ INSERT INTO `data_transaksi` (`Notransaksi`, `Username`, `Id`, `Nama`, `Harga`, 
 ('09', 'Majalengka09', 17141009, 'Fitria', 0, 4, 7),
 ('10', 'Majalengka10', 17141010, 'Kartika', 0, 2, 3);
 
+-- --------------------------------------------------------
+
+--
+-- Struktur untuk view `data barang`
+--
+DROP TABLE IF EXISTS `data barang`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `data barang` AS select `data_barang`.`Id_Barang` AS `Id_Barang`,`data_barang`.`Nama` AS `Nama`,`data_barang`.`Deskripsi` AS `Deskripsi`,`data_barang`.`Warna` AS `Warna`,`data_barang`.`Ukuran` AS `Ukuran`,`data_barang`.`Harga` AS `Harga`,`data_barang`.`Stock` AS `Stock`,`data_kategori`.`Kategori` AS `Kategori`,`data_kategori`.`Id_Kategori` AS `Id_Kategori`,`data_transaksi`.`Id_Transaksi` AS `Id_Transaksi` from ((`data_barang` join `data_kategori` on((`data_kategori`.`Kategori` = `data_barang`.`Kategori`))) join `data_transaksi` on((`data_transaksi`.`Id_Transaksi` = `data_barang`.`Id_Barang`)));
+
 --
 -- Indexes for dumped tables
 --
@@ -210,19 +236,19 @@ INSERT INTO `data_transaksi` (`Notransaksi`, `Username`, `Id`, `Nama`, `Harga`, 
 -- Indexes for table `data_admin`
 --
 ALTER TABLE `data_admin`
- ADD PRIMARY KEY (`Id`);
+ ADD PRIMARY KEY (`Id_Admin`);
 
 --
 -- Indexes for table `data_barang`
 --
 ALTER TABLE `data_barang`
- ADD PRIMARY KEY (`Id`), ADD KEY `Kategori` (`Kategori`);
+ ADD PRIMARY KEY (`Id_Barang`), ADD KEY `Kategori` (`Kategori`);
 
 --
 -- Indexes for table `data_kategori`
 --
 ALTER TABLE `data_kategori`
- ADD PRIMARY KEY (`Kategori`), ADD KEY `Id` (`Id`);
+ ADD PRIMARY KEY (`Kategori`), ADD KEY `Id` (`Id_Kategori`);
 
 --
 -- Indexes for table `data_no_transaksi`
@@ -234,13 +260,13 @@ ALTER TABLE `data_no_transaksi`
 -- Indexes for table `data_pelanggan`
 --
 ALTER TABLE `data_pelanggan`
- ADD PRIMARY KEY (`Nama`), ADD KEY `Id` (`Id`);
+ ADD PRIMARY KEY (`Nama`), ADD KEY `Id` (`Id_Pelanggan`);
 
 --
 -- Indexes for table `data_transaksi`
 --
 ALTER TABLE `data_transaksi`
- ADD PRIMARY KEY (`Notransaksi`), ADD KEY `Id` (`Id`);
+ ADD PRIMARY KEY (`Notransaksi`), ADD KEY `Id` (`Id_Transaksi`);
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -253,28 +279,10 @@ ALTER TABLE `data_barang`
 ADD CONSTRAINT `data_barang_ibfk_1` FOREIGN KEY (`Kategori`) REFERENCES `data_kategori` (`Kategori`);
 
 --
--- Ketidakleluasaan untuk tabel `data_kategori`
---
-ALTER TABLE `data_kategori`
-ADD CONSTRAINT `data_kategori_ibfk_1` FOREIGN KEY (`Id`) REFERENCES `data_admin` (`Id`);
-
---
 -- Ketidakleluasaan untuk tabel `data_no_transaksi`
 --
 ALTER TABLE `data_no_transaksi`
 ADD CONSTRAINT `data_no_transaksi_ibfk_1` FOREIGN KEY (`Notransaksi`) REFERENCES `data_transaksi` (`Notransaksi`);
-
---
--- Ketidakleluasaan untuk tabel `data_pelanggan`
---
-ALTER TABLE `data_pelanggan`
-ADD CONSTRAINT `data_pelanggan_ibfk_1` FOREIGN KEY (`Id`) REFERENCES `data_admin` (`Id`);
-
---
--- Ketidakleluasaan untuk tabel `data_transaksi`
---
-ALTER TABLE `data_transaksi`
-ADD CONSTRAINT `data_transaksi_ibfk_1` FOREIGN KEY (`Id`) REFERENCES `data_barang` (`Id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
